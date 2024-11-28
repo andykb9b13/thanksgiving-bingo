@@ -33,7 +33,7 @@ const BingoBoard = () => {
     "Sirius barks in the house",
     "Basil and Sirius in the same room",
     "All 3 Peroutka girls play music together",
-    "Spill",
+    "Viola spills something",
     "Leave by 7:30pm",
   ];
 
@@ -226,8 +226,6 @@ const BingoBoard = () => {
     console.log("didWin: ", didWin);
   }, [clickedArr]);
 
-  console.log("clickedArr", clickedArr);
-
   const getBoxStyle = (id) => {
     if (clickedArr.includes(id)) {
       return {
@@ -259,24 +257,26 @@ const BingoBoard = () => {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>Thanksgiving Bingo!</h1>
-      {winner && (
-        <>
-          <h2>You Won!!!</h2>
-          {winner && (
-            <Button
-              onClick={() => {
-                setClickedArr([]);
-                setWinner(false);
-                setRandomArr(generateShuffledArray());
-              }}
-            >
-              Play Again
-            </Button>
-          )}
-        </>
-      )}
-
+      <Container className="header">
+        <h1 style={{ textAlign: "center" }}>Thanksgiving Bingo!</h1>
+        {winner && (
+          <>
+            <h2>You Won!!!</h2>
+            {winner && (
+              <Button
+                style={{ backgroundColor: "purple" }}
+                onClick={() => {
+                  setClickedArr([]);
+                  setWinner(false);
+                  setRandomArr(generateShuffledArray());
+                }}
+              >
+                Play Again
+              </Button>
+            )}
+          </>
+        )}
+      </Container>
       <Container className="bingoBoard">
         <Row>
           {boxState &&
