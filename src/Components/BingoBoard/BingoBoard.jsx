@@ -1,5 +1,9 @@
 import { Button, Col, Row, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import bingoBackground1 from "../../assets/bingo-background-1.png";
+import bingoBackground2 from "../../assets/bingo-background-2.png";
+import bingoBackground3 from "../../assets/bingo-background-3.png";
+
 const BingoBoard = () => {
   const [clickedArr, setClickedArr] = useState([]);
   const [winner, setWinner] = useState(false);
@@ -232,20 +236,44 @@ const BingoBoard = () => {
     } else return {};
   };
 
+  const [backgroundImage, setBackgroundImage] = useState(bingoBackground1);
+
+  const imageChoices = [bingoBackground1, bingoBackground2, bingoBackground3];
+
+  useEffect(() => {
+    setInterval(() => {
+      const randomNum = Math.floor(Math.random() * 3);
+      console.log(randomNum);
+      setBackgroundImage(imageChoices[randomNum]);
+    }, 10 * 60 * 1000);
+  }, []);
+
   return (
-    <Container>
-      <h1>Thanksgiving Bingo!</h1>
+    <Container
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}>Thanksgiving Bingo!</h1>
       {winner && (
         <>
           <h2>You Won!!!</h2>
-          <Button
-            onClick={() => {
-              setClickedArr([]);
-              setRandomArr(generateShuffledArray());
-            }}
-          >
-            Play Again
-          </Button>
+          {winner && (
+            <Button
+              onClick={() => {
+                setClickedArr([]);
+                setWinner(false);
+                setRandomArr(generateShuffledArray());
+              }}
+            >
+              Play Again
+            </Button>
+          )}
         </>
       )}
 
