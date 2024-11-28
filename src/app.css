@@ -1,0 +1,29 @@
+.bingoBoard {
+  border: 1px solid black;
+}
+
+.bingoButton {
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  flex: 1;
+}
+
+.bingoSquare {
+  border: 1px solid black;
+  height: 75px;
+  width: 75px;
+}
+
+.clickedSquare {
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+}
+
+.boxData {
+  font-size: 0.5em;
+  margin: 0;
+  padding: 0;
+}
